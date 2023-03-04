@@ -5,6 +5,7 @@ import uvicorn
 app = FastAPI()
 
 prompt = "user"
+openai.api_key = ""
 
 
 @app.get("/ask")

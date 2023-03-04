@@ -4,7 +4,7 @@ import uvicorn
 
 app = FastAPI()
 
-openai.api_key = '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'
+prompt = "user"
 
 
 @app.get("/ask")
@@ -20,11 +20,16 @@ async def set_token(token):
     openai.api_key = token
 
 
+@app.post("/set_prompt")
+async def set_promt(prompt):
+    prompt = prompt
+
+
 def get_answer(question):
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=[
-            {"role": "user", "content": question},
+            {"role": prompt, "content": question},
         ]
     )
     return response["choices"][0]["message"]["content"]

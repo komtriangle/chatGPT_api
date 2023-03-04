@@ -29,7 +29,7 @@ def get_answer(question):
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=[
-            {"role": prompt, "content": question},
+            {"role": "", "content": f"{prompt}. Answer the following question ({question})"},
         ]
     )
     return response["choices"][0]["message"]["content"]
